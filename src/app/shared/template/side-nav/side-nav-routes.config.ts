@@ -13,62 +13,89 @@ export const AdminRoutes: SideNavInterface[] = [
     submenu:[]
   },
   {
-    path: 'administrador/carga-reportes',
-    title: 'Carga de reportes',
+    path: 'administrador/pedidos',
+    title: 'Pedidos',
     iconType: 'nzIcon',
     iconTheme: 'outline',
     icon: '',
     submenu:[]
   },
   {
-    path: 'responsable/captura-lote',
-    title: 'Captura de lotes',
-    iconType: 'nzIcon',
-    iconTheme: 'outline',
-    icon: '',
-    submenu:[]
-  },
-  {
-    path: 'responsable/inventarios',
-    title: 'Inventarios',
-    iconType: 'nzIcon',
-    iconTheme: 'outline',
-    icon: '',
-    submenu:[]
-  },
-  {
-    path: '',
-    title: 'Reportes',
+    path: 'administrador/pagos',
+    title: 'Pagos',
     iconType: 'nzIcon',
     iconTheme: 'outline',
     icon: '',
     submenu:[
       {
-        path: 'responsable/reporte-altas',
-        title: 'Reporte de altas',
+        path: 'administrador/pagos',
+        title: 'Ver pagos',
         iconType: 'nzIcon',
         iconTheme: 'outline',
         icon: '',
         submenu:[]
       },
       {
-        path: 'responsable/medicamentos-caducos',
-        title: 'Medicamentos caducos',
+        path: 'administrador/registra-pago',
+        title: 'Registrar pago',
         iconType: 'nzIcon',
         iconTheme: 'outline',
         icon: '',
         submenu:[]
-      },
-      {
-        path: 'responsable/reporte-inventarios',
-        title: 'Reporte de inventarios',
-        iconType: 'nzIcon',
-        iconTheme: 'outline',
-        icon: '',
-        submenu:[]
-      },
+      }
     ]
-  }
+  },
+  {
+    path: '',
+    title: 'Clientes',
+    iconType: 'nzIcon',
+    iconTheme: 'outline',
+    icon: '',
+    submenu:[
+      {
+        path: 'administrador/clientes',
+        title: 'Ver clientes',
+        iconType: 'nzIcon',
+        iconTheme: 'outline',
+        icon: '',
+        submenu:[]
+      },
+      {
+        path: 'administrador/registra-cliente',
+        title: 'Registrar cliente',
+        iconType: 'nzIcon',
+        iconTheme: 'outline',
+        icon: '',
+        submenu:[]
+      }
+    ]
+  },
+  {
+    path: '',
+    title: 'Repartidores',
+    iconType: 'nzIcon',
+    iconTheme: 'outline',
+    icon: '',
+    submenu:[
+      {
+        path: 'administrador/repartidores',
+        title: 'Ver repartidores',
+        iconType: 'nzIcon',
+        iconTheme: 'outline',
+        icon: '',
+        submenu:[]
+      },
+      {
+        path: 'administrador/registra-repartidor',
+        title: 'Registrar repartidor',
+        iconType: 'nzIcon',
+        iconTheme: 'outline',
+        icon: '',
+        submenu:[]
+      }
+    ]
+  },
+ 
 ]
 
 export const MercaderiaRoutes: SideNavInterface[] = [

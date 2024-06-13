@@ -49,7 +49,13 @@ import { HotTableModule } from '@handsontable/angular';
 import { registerAllModules } from 'handsontable/registry';
 import { NzCalendarModule } from 'ng-zorro-antd/calendar';
 import { FullCalendarModule } from '@fullcalendar/angular';
-import { CargaReportesComponent } from './carga-reportes/carga-reportes.component';
+import { PedidosComponent } from './pedidos/pedidos.component';
+import { PagosComponent } from './pagos/pagos.component';
+import { RegistraPagoComponent } from './registra-pago/registra-pago.component';
+import { ClientesComponent } from './clientes/clientes.component';
+import { RegistraClienteComponent } from './registra-cliente/registra-cliente.component';
+import { RepartidoresComponent } from './repartidores/repartidores.component';
+import { RegistraRepartidorComponent } from './registra-repartidor/registra-repartidor.component';
 
 const antdModule = [
   HotTableModule.forRoot(),
@@ -100,7 +106,13 @@ registerAllModules();
 @NgModule({
   declarations: [
     DashboardComponent,
-    CargaReportesComponent
+    PedidosComponent,
+    PagosComponent,
+    RegistraPagoComponent,
+    ClientesComponent,
+    RegistraClienteComponent,
+    RepartidoresComponent,
+    RegistraRepartidorComponent,
   ],
   imports: [
     CommonModule,
