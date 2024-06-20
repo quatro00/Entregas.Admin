@@ -9,6 +9,7 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 })
 export class RegistraClienteComponent {
 
+  isVisible = false;
   isLoading = true;
   showContent = false;
   validateForm!: UntypedFormGroup;
@@ -20,17 +21,17 @@ export class RegistraClienteComponent {
 
   ngOnInit() {
     this.validateForm = this.fb.group({
-      titulo: ['',[Validators.required]],
-      tipoMensaje: ['',[Validators.required]],
-      fechaCaducidad: ['',[Validators.required]],
-      mensaje: ['',[Validators.required]],
-      archivo: [''],
-      cuentas: [[]],
-      //prioridad: ['',[Validators.required]],
-      //descripcion: ['',[Validators.required]]
+      nombre: ['',[Validators.required]],
+      apellidos: ['',[Validators.required]],
+      correoElectronico: ['',[Validators.required]],
+      telefono: ['',[Validators.required]]
     });
 
     this.loadData();
+  }
+
+  handleCancel() {
+    this.isVisible = false;
   }
 
   loadData() {

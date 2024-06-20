@@ -6,4 +6,10 @@ generar componente mercaderia
 ng generate component pages/responsable/
 
 generar componente admin
-ng generate component pages/admin/
+ng generate component pages/admin/pedidos
+ng generate component pages/admin/pagos
+ng generate component pages/admin/registra-pago
+ng generate component pages/admin/clientes
+ng generate component pages/admin/registra-cliente
+ng generate component pages/admin/repartidores
+ng generate component pages/admin/registra-repartidor

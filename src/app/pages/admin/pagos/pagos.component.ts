@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-pagos',
@@ -6,5 +7,23 @@ import { Component } from '@angular/core';
   styleUrls: ['./pagos.component.css']
 })
 export class PagosComponent {
+  isVisible = false;
+  isLoading = true;
+  showContent = false;
 
+  constructor(
+    private msg: NzMessageService) {}
+
+
+  ngOnInit() {
+   
+    this.loadData();
+  }
+
+
+
+  loadData() {
+    this.isLoading = false;
+    this.showContent = true;
+  }
 }
