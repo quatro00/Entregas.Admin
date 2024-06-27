@@ -1,47 +1,106 @@
 <div nz-row nzGutter="25">
-    <!-- skeleton -->
-    <ng-template #loadingSkeleton>
-      <nz-skeleton class="bg-white dark:bg-white/10 rounded-6 p-[30px] pt-[15px]" [nzShape]="circle" [nzActive]="true"
-        [nzParagraph]="{ rows: 6 }"></nz-skeleton>
-    </ng-template>
-    <!-- skeleton -->
-    <div nz-col nzXs="24" class="mb-[25px]">
-      <ng-container *ngIf="showContent; else loadingSkeleton">
-        <div
-          class="bg-white dark:bg-white/10 m-0 p-0 text-theme-gray dark:text-white/60 text-[15px] rounded-10 relative h-full">
-          <div
-            class="py-[16px] px-[25px] text-dark dark:text-white/[.87] font-medium text-[17px] border-regular dark:border-white/10 border-b">
-            <h4 class="mb-0 text-lg font-medium text-dark dark:text-white/[.87]">Repartidores</h4>
-          </div>
+  <!-- skeleton -->
+  <ng-template #loadingSkeleton>
+    <nz-skeleton class="bg-white dark:bg-white/10 rounded-6 p-[30px] pt-[15px]" [nzShape]="circle" [nzActive]="true"
+      [nzParagraph]="{ rows: 6 }"></nz-skeleton>
+  </ng-template>
 
-          
-          <div class="p-[25px]">
-            <div class="w-full overflow-x-auto">
-                <nz-table #basicTable 
-                nzShowSizeChanger
-                [nzData]="filteredData">
-                  <thead>
-                    <tr>
-                      <th class="bg-regularBG dark:bg-[#323440] px-[20px] py-[16px] text-start text-dark dark:text-white/[.87] text-[15px] font-medium border-none before:hidden capitalize">Nombre</th>
-                      <th class="bg-regularBG dark:bg-[#323440] px-[20px] py-[16px] text-start text-dark dark:text-white/[.87] text-[15px] font-medium border-none before:hidden capitalize">Apellidos</th>
-                      <th class="bg-regularBG dark:bg-[#323440] px-[20px] py-[16px] text-start text-dark dark:text-white/[.87] text-[15px] font-medium border-none before:hidden capitalize">Telefono</th>
-                      <th class="bg-regularBG dark:bg-[#323440] px-[20px] py-[16px] text-start text-dark dark:text-white/[.87] text-[15px] font-medium border-none before:hidden capitalize">Correo electronico</th>
-                      
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr class="group" *ngFor="let person of basicTable.data">
-                        <td class="ltr:pr-[20px] rtl:pl-[20px] text-dark dark:text-white/[.87] text-[15px] py-4 before:hidden border-none group-hover:bg-transparent">{{ person.autor }}</td>
-                        <td class="ltr:pr-[20px] rtl:pl-[20px] text-dark dark:text-white/[.87] text-[15px] py-4 before:hidden border-none group-hover:bg-transparent">{{ person.autor }}</td>
-                        <td class="ltr:pr-[20px] rtl:pl-[20px] text-dark dark:text-white/[.87] text-[15px] py-4 before:hidden border-none group-hover:bg-transparent">{{ person.autor }}</td>
-                        <td class="ltr:pr-[20px] rtl:pl-[20px] text-dark dark:text-white/[.87] text-[15px] py-4 before:hidden border-none group-hover:bg-transparent">{{ person.autor }}</td>
-                    </tr>
-                  </tbody>
-                </nz-table>
-              </div>
-          </div>
-        </div>
-      </ng-container>
-    </div>
-    </div>
   
+  <nz-modal
+    [(nzVisible)]="isVisible"
+    [nzTitle]="modalTitle"
+    [nzContent]="modalContent"
+    [nzFooter]="modalFooter"
+    (nzOnCancel)="handleCancel()"
+  >
+    <ng-template #modalTitle>Editar repartidor</ng-template>
+
+    <ng-template #modalContent>
+      <form nz-form nzLayout="vertical" [formGroup]="validateForm" (ngSubmit)="submitForm()">
+        <nz-form-item>
+            <nz-form-control nzErrorTip="Campo requerido.">
+              <nz-form-label class="text-[15px] font-semibold text-dark capitalize mb-[10px]">Nombre:</nz-form-label>
+              <input formControlName="nombre" style="color:white" class="w-full rounded-4 border-normal border-1 text-[15px] dark:bg-white/10 dark:border-white/10 px-[20px] py-[12px] h-[46px] outline-none placeholder:text-[#A0A0A0] text-theme-gray dark:text-white/60" type="text" nz-input >
+            </nz-form-control>
+          </nz-form-item>
+         <nz-form-item>
+           <nz-form-control nzErrorTip="Campo requerido.">
+             <nz-form-label class="text-[15px] font-semibold text-dark capitalize mb-[10px]">Apellidos:</nz-form-label>
+             <input formControlName="apellidos" style="color:white" class="w-full rounded-4 border-normal border-1 text-[15px] dark:bg-white/10 dark:border-white/10 px-[20px] py-[12px] h-[46px] outline-none placeholder:text-[#A0A0A0] text-theme-gray dark:text-white/60" type="text" nz-input #nombre>
+           </nz-form-control>
+         </nz-form-item>
+       
+         <nz-form-item>
+          <nz-form-control nzErrorTip="Campo requerido.">
+            <nz-form-label class="text-[15px] font-semibold text-dark capitalize mb-[10px]">Teléfono:</nz-form-label>
+            <input formControlName="telefono" style="color:white" class="w-full rounded-4 border-normal border-1 text-[15px] dark:bg-white/10 dark:border-white/10 px-[20px] py-[12px] h-[46px] outline-none placeholder:text-[#A0A0A0] text-theme-gray dark:text-white/60" type="text" nz-input #nombre>
+          </nz-form-control>
+        </nz-form-item>
+
+         <nz-form-item>
+           <nz-form-control nzErrorTip="Campo requerido.">
+             <nz-checkbox-wrapper class="flex flex-col w-full capitalize basic-checkbox text-theme-gray dark:text-white/60 gap-[5px] mb-[15px]" (nzOnChange)="log($event)">
+               <label class=" m-0 text-dark dark:text-white/[.87]" nz-checkbox nzValue="1" [nzChecked]="isChecked">Activo</label>
+             </nz-checkbox-wrapper>
+
+           </nz-form-control>
+         </nz-form-item>
+       </form>
+    </ng-template>
+
+    <ng-template #modalFooter>
+      <button class="bg-primary hover:bg-primary-hbr hover:border-primary-hbr border-solid border-1 border-primary text-white dark:text-white/[.87] text-[14px] font-semibold leading-[22px] inline-flex items-center justify-center rounded-[4px] px-[20px] h-[44px]" nz-button nzType="primary" (click)="handleOk()" [nzLoading]="btnLoading">Guardar</button>
+    </ng-template>
+  </nz-modal>
+
+
+  <!-- skeleton -->
+  <div nz-col nzXs="24" class="mb-[25px]">
+    <ng-container *ngIf="showContent; else loadingSkeleton">
+      <div
+        class="bg-white dark:bg-white/10 m-0 p-0 text-theme-gray dark:text-white/60 text-[15px] rounded-10 relative h-full">
+        <div
+          class="py-[16px] px-[25px] text-dark dark:text-white/[.87] font-medium text-[17px] border-regular dark:border-white/10 border-b">
+          <h4 class="mb-0 text-lg font-medium text-dark dark:text-white/[.87]">Repartidores</h4>
+        </div>
+
+        
+        <div class="p-[25px]">
+          <div class="w-full overflow-x-auto">
+              <nz-table #basicTable 
+              nzShowSizeChanger
+              [nzData]="filteredData">
+                <thead>
+                  <tr>
+                    <th class="bg-regularBG dark:bg-[#323440] px-[20px] py-[16px] text-start text-dark dark:text-white/[.87] text-[15px] font-medium border-none before:hidden capitalize">Nombre</th>
+                    <th class="bg-regularBG dark:bg-[#323440] px-[20px] py-[16px] text-start text-dark dark:text-white/[.87] text-[15px] font-medium border-none before:hidden capitalize">Apellidos</th>
+                    <th class="bg-regularBG dark:bg-[#323440] px-[20px] py-[16px] text-start text-dark dark:text-white/[.87] text-[15px] font-medium border-none before:hidden capitalize">Telefono</th>
+                    <th class="bg-regularBG dark:bg-[#323440] px-[20px] py-[16px] text-start text-dark dark:text-white/[.87] text-[15px] font-medium border-none before:hidden capitalize">Correo electronico</th>
+                    <th class="bg-regularBG dark:bg-[#323440] px-[20px] py-[16px] text-start text-dark dark:text-white/[.87] text-[15px] font-medium border-none before:hidden capitalize">Activo</th>
+                    <th class="bg-regularBG dark:bg-[#323440] px-[20px] py-[16px] text-start text-dark dark:text-white/[.87] text-[15px] font-medium border-none before:hidden capitalize"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="group" *ngFor="let person of basicTable.data">
+                      <td class="ltr:pr-[20px] rtl:pl-[20px] text-dark dark:text-white/[.87] text-[15px] py-4 before:hidden border-none group-hover:bg-transparent">{{ person.nombre }}</td>
+                      <td class="ltr:pr-[20px] rtl:pl-[20px] text-dark dark:text-white/[.87] text-[15px] py-4 before:hidden border-none group-hover:bg-transparent">{{ person.apellidos }}</td>
+                      <td class="ltr:pr-[20px] rtl:pl-[20px] text-dark dark:text-white/[.87] text-[15px] py-4 before:hidden border-none group-hover:bg-transparent">{{ person.telefono }}</td>
+                      <td class="ltr:pr-[20px] rtl:pl-[20px] text-dark dark:text-white/[.87] text-[15px] py-4 before:hidden border-none group-hover:bg-transparent">{{ person.correoElectronico }}</td>
+                      <td class="ltr:pr-[20px] rtl:pl-[20px] text-dark dark:text-white/[.87] text-[15px] py-4 before:hidden border-none group-hover:bg-transparent">{{ person.activo }}</td>
+                      <td class="ltr:pr-[20px] rtl:pl-[20px] text-dark dark:text-white/[.87] text-[15px] py-4 before:hidden border-none group-hover:bg-transparent">
+                        <button nz-button nzType="default" (click)="showNew(newItem, person)"
+                        class="bg-primary hover:bg-primary-hbr border-solid border-1 border-primary text-white dark:text-white/[.87] text-[14px] font-semibold leading-[22px] inline-flex items-center justify-center rounded-[4px] duration-300"
+                        >
+                          <span nz-icon nzType="edit" ></span>
+                          Editar
+                        </button>
+                      </td>
+                  </tr>
+                </tbody>
+              </nz-table>
+            </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  </div>
